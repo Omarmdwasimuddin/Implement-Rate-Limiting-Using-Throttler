@@ -65,8 +65,35 @@ export class AppController {
 
 
 #### Multiple Rate Limits
-#### ``
+#### `app.module.ts`
 ```bash
+import { Module } from '@nestjs/common';
+import { AppController } from './app.controller';
+import { AppService } from './app.service';
+import { ThrottlerGuard, ThrottlerModule } from '@nestjs/throttler';
+import { APP_GUARD } from '@nestjs/core';
 
+@Module({
+  imports: [ThrottlerModule.forRoot([
+    {
+      name: 'short',
+      ttl: 1000,         // 3 requests / 1 second
+      limit: 3,
+    },
+    {
+      name: 'medium',
+      ttl: 10000,        // 20 requests / 10 seconds
+      limit: 20,
+    },
+    {
+      name: 'long',
+      ttl: 60000,        // 100 requests / 1 minute
+      limit: 100,
+    },
+  ]), ],
+  controllers: [AppController],
+  providers: [AppService, { provide: APP_GUARD, useClass: ThrottlerGuard }],
+})
+export class AppModule {}
 ```
 ---
