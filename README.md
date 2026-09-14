@@ -92,3 +92,10 @@ export class AppController {
 }
 ```
 ---
+
+
+>#### 3bar er beshi request ba reload dile errormessage show korbe
+>## OUTPUT
+> <img width="426" height="182" alt="image" src="https://github.com/user-attachments/assets/79578822-aaca-4843-a3aa-f016092e38f4" />
+
+> <img width="617" height="157" alt="image" src="https://github.com/user-attachments/assets/ff354784-7f54-4526-bf4a-77169b8b1fea" />
